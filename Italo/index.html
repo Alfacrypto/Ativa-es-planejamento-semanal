@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planejamento Ítalo — 11 a 16/05</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0a0a0f; --surface:#13131a; --border:#1e1e2e; --accent:#f5c542; --accent2:#ff6b35; --text:#e8e8f0; --muted:#6b6b80; --green:#2ecc71; --edit:#3b82f6; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; font-weight:300; line-height:1.6; min-height:100vh; }
+  header { padding:40px 32px 28px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:12px; }
+  .header-left h1 { font-family:'Syne',sans-serif; font-size:clamp(1.4rem,4vw,2.2rem); font-weight:800; color:#fff; }
+  .header-left h1 span { color:var(--accent); }
+  .header-left p { color:var(--muted); font-size:0.85rem; margin-top:4px; text-transform:uppercase; letter-spacing:0.5px; }
+  .badge { background:var(--accent); color:#000; font-family:'Syne',sans-serif; font-weight:700; font-size:0.75rem; padding:6px 14px; border-radius:2px; text-transform:uppercase; }
+  .container { max-width:860px; margin:0 auto; padding:32px 20px 80px; }
+  .legend { display:flex; gap:16px; margin-bottom:28px; flex-wrap:wrap; }
+  .legend-item { display:flex; align-items:center; gap:8px; font-size:0.78rem; color:var(--muted); }
+  .dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+  .dot-all{background:var(--text);} .dot-ftd{background:var(--accent2);} .dot-dep{background:var(--green);}
+
+.day-card { background:var(–surface); border:1px solid var(–border); border-left:3px solid var(–accent); border-radius:4px; margin-bottom:16px; }
+.day-card input[type=checkbox] { display:none; }
+.day-header { display:flex; align-items:center; gap:14px; padding:16px 20px; cursor:pointer; user-select:none; border-bottom:1px solid transparent; }
+.day-card input:checked ~ .day-header { border-bottom-color:var(–border); }
+.day-date { font-family:‘Syne’,sans-serif; font-size:0.75rem; font-weight:700; color:var(–accent); text-transform:uppercase; letter-spacing:1px; min-width:48px; }
+.day-title { font-weight:500; font-size:0.92rem; color:#fff; flex:1; }
+.day-weekday { font-size:0.72rem; color:var(–muted); text-transform:uppercase; }
+.chevron { color:var(–muted); font-size:0.75rem; transition:transform 0.2s; flex-shrink:0; }
+.day-card input:checked ~ .day-header .chevron { transform:rotate(180deg); }
+.day-body { display:none; padding:16px; }
+.day-card input:checked ~ .day-body { display:block; }
+
+.copy-block { margin-bottom:14px; border-radius:3px; overflow:hidden; }
+.copy-block:last-child { margin-bottom:0; }
+.copy-label { display:flex; align-items:center; gap:8px; padding:7px 12px; font-size:0.7rem; font-weight:500; text-transform:uppercase; letter-spacing:1px; }
+.lbl-all{background:rgba(232,232,240,0.08);color:var(–text);}
+.lbl-ftd{background:rgba(255,107,53,0.12);color:var(–accent2);}
+.lbl-dep{background:rgba(46,204,113,0.10);color:var(–green);}
+.copy-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.cd-all{background:var(–text);} .cd-ftd{background:var(–accent2);} .cd-dep{background:var(–green);}
+
+.copy-text { background:rgba(255,255,255,0.03); border:1px solid var(–border); border-top:none; padding:12px 14px; font-size:0.85rem; line-height:1.85; color:var(–text); white-space:pre-wrap; word-break:break-word; }
+.copy-text[contenteditable=“true”] { outline:none; border-color:var(–edit); background:rgba(59,130,246,0.06); }
+
+.btn-row { display:flex; gap:6px; padding:8px 12px; border:1px solid var(–border); border-top:none; background:rgba(0,0,0,0.2); }
+.btn { font-family:‘DM Sans’,sans-serif; font-size:0.7rem; font-weight:500; padding:5px 14px; border-radius:2px; border:none; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; transition:all 0.15s; }
+.btn-edit { background:rgba(59,130,246,0.15); color:var(–edit); }
+.btn-edit:hover, .btn-edit.on { background:var(–edit); color:#fff; }
+.btn-copy { background:rgba(255,255,255,0.08); color:var(–muted); }
+.btn-copy:hover { background:var(–accent); color:#000; }
+.btn-copy.ok { background:var(–green); color:#000; }
+</style>
+
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <h1>🐺 Ítalo — <span>Semana 11–16/05</span></h1>
+    <p>Puma Broker · Ativações + copies de disparo</p>
+  </div>
+  <div class="badge">Alfa Business</div>
+</header>
+
+<div class="container">
+  <div class="legend">
+    <div class="legend-item"><div class="dot dot-all"></div>Toda a base</div>
+    <div class="legend-item"><div class="dot dot-ftd"></div>Quem fez FTD</div>
+    <div class="legend-item"><div class="dot dot-dep"></div>Quem já depositou</div>
+  </div>
+
+  <!-- DIA 1 -->
+
+  <div class="day-card">
+    <input type="checkbox" id="d1">
+    <label class="day-header" for="d1">
+      <div class="day-date">11/05</div>
+      <div class="day-title">📲 Indicador por R$300</div>
+      <div class="day-weekday">Segunda</div>
+      <div class="chevron">▼</div>
+    </label>
+    <div class="day-body">
+      <div class="copy-block">
+        <div class="copy-label lbl-all"><div class="copy-dot cd-all"></div>Toda a base</div>
+        <div class="copy-text" id="c1a">🔥 SEGUNDA-FEIRA PESADA.
+
+Hoje o Ítalo liberou o indicador exclusivo pra quem depositar QUALQUER VALOR acima de R$300 aqui na Puma.
+
+Sabe o que esse indicador faz? Ele filtra o ruído do mercado e aponta exatamente ONDE entrar. Sem achismo. Sem emoção.
+
+📊 Esse indicador não tá disponível pra compra. Não tem como pegar em outro lugar.
+
+Quem depositar hoje recebe o acesso direto.
+
+➡️ Faz seu depósito agora e manda o comprovante pro suporte:
+[LINK SUPORTE]
+
+⚠️ Vagas limitadas pra hoje.</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c1a',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c1a',this)">Copiar</button>
+</div>
+</div>
+<div class="copy-block">
+<div class="copy-label lbl-ftd"><div class="copy-dot cd-ftd"></div>Quem fez FTD mas não depositou</div>
+<div class="copy-text" id="c1b">Ei, você já criou sua conta aqui na Puma — isso já te coloca na frente da maioria. 👊
+
+Hoje o Ítalo liberou o indicador exclusivo pra quem der o próximo passo: o depósito.
+
+R$300 já garante o acesso. E olha — esse indicador não tá sendo vendido. É só pra quem tá aqui dentro.
+
+A diferença entre você e quem já tem o indicador é um depósito de R$300.
+
+Manda o comprovante pro suporte e já recebe:
+[LINK SUPORTE]</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c1b',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c1b',this)">Copiar</button>
+</div>
+</div>
+<div class="copy-block">
+<div class="copy-label lbl-dep"><div class="copy-dot cd-dep"></div>Quem já depositou</div>
+<div class="copy-text" id="c1c">Você já tá na Puma, já operou — agora é hora de dar o próximo nível. 📈
+
+O Ítalo liberou hoje o indicador exclusivo pra quem fizer um novo depósito de R$300+.
+
+Quem já tem histórico aqui sabe que quando ele libera ferramenta, vale a pena entrar.
+
+Manda o comprovante pro suporte:
+[LINK SUPORTE]</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c1c',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c1c',this)">Copiar</button>
+</div>
+</div>
+</div>
+
+  </div>
+
+  <!-- DIA 2 -->
+
+  <div class="day-card">
+    <input type="checkbox" id="d2">
+    <label class="day-header" for="d2">
+      <div class="day-date">12/05</div>
+      <div class="day-title">💬 Feedback agressivo + antecipação alavancagem</div>
+      <div class="day-weekday">Terça</div>
+      <div class="chevron">▼</div>
+    </label>
+    <div class="day-body">
+      <div class="copy-block">
+        <div class="copy-label lbl-all"><div class="copy-dot cd-all"></div>Toda a base</div>
+        <div class="copy-text" id="c2a">📢 OLHA O QUE TÁ ACONTECENDO AQUI DENTRO:
+
+[DEPOIMENTO / PRINT DO RESULTADO]
+
+Enquanto você tá pensando se entra ou não — tem gente aqui dentro já sacando resultado.
+
+E amanhã tem algo GRANDE chegando. O Ítalo vai lançar uma alavancagem que a maioria dos traders nunca viu.
+
+Se prepara. Quem não tiver na Puma vai ficar de fora.
+
+👉 Cria sua conta agora:
+[LINK CADASTRO]</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c2a',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c2a',this)">Copiar</button>
+</div>
+</div>
+<div class="copy-block">
+<div class="copy-label lbl-ftd"><div class="copy-dot cd-ftd"></div>Quem fez FTD mas não depositou</div>
+<div class="copy-text" id="c2b">Você criou a conta. Falta só um passo.
+
+Vê o que tá rolando pra quem tá dentro:
+[DEPOIMENTO / PRINT]
+
+E amanhã tem alavancagem vindo. Quem já depositou vai ter acesso primeiro.
+
+Não fica de fora disso.
+[LINK SUPORTE]</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c2b',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c2b',this)">Copiar</button>
+</div>
+</div>
+<div class="copy-block">
+<div class="copy-label lbl-dep"><div class="copy-dot cd-dep"></div>Quem já depositou</div>
+<div class="copy-text" id="c2c">🔔 Aviso antecipado pra quem já tá operando aqui:
+
+Amanhã o Ítalo lança uma alavancagem especial. Você vai receber o aviso com antecedência porque já tá dentro.
+
+Fica ligado no grupo. Amanhã cedo a gente manda tudo.
+
+Prepara a banca. 🐺</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c2c',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c2c',this)">Copiar</button>
+</div>
+</div>
+</div>
+
+  </div>
+
+  <!-- DIA 3 -->
+
+  <div class="day-card">
+    <input type="checkbox" id="d3">
+    <label class="day-header" for="d3">
+      <div class="day-date">13/05</div>
+      <div class="day-title">⚡ Alavancagem sem risco</div>
+      <div class="day-weekday">Quarta</div>
+      <div class="chevron">▼</div>
+    </label>
+    <div class="day-body">
+      <div class="copy-block">
+        <div class="copy-label lbl-all"><div class="copy-dot cd-all"></div>Toda a base</div>
+        <div class="copy-text" id="c3a">⚡ ALAVANCAGEM SEM RISCO — É HOJE.
+
+O Ítalo vai alavancar sua banca ao vivo. Sem risco pro seu capital.
+
+Como funciona na prática:
+💵 Depositou R$100 → opera com R$200
+💵 Depositou R$300 → opera com R$600
+💵 Depositou R$500 → opera com R$1.000
+💵 Depositou R$1.000 → opera com R$2.000
+
+Você entra com o seu, ele dobra. Simples assim.
+
+⏰ Válido só HOJE. Vagas limitadas.
+
+👉 Faz o depósito e manda o comprovante pro suporte:
+[LINK SUPORTE]</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c3a',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c3a',this)">Copiar</button>
+</div>
+</div>
+<div class="copy-block">
+<div class="copy-label lbl-ftd"><div class="copy-dot cd-ftd"></div>Quem fez FTD mas não depositou</div>
+<div class="copy-text" id="c3b">Você tem conta. Falta só o depósito pra pegar isso aqui:
+
+⚡ Hoje o Ítalo tá alavancando sem risco.
+💵 R$100 → opera com R$200
+💵 R$300 → opera com R$600
+💵 R$500 → opera com R$1.000
+
+Você deposita, ele dobra sua banca. Sem pegadinha.
+
+Esse tipo de oportunidade não fica aberta por muito tempo. Só hoje.
+
+Entra agora:
+[LINK SUPORTE]</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c3b',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c3b',this)">Copiar</button>
+</div>
+</div>
+<div class="copy-block">
+<div class="copy-label lbl-dep"><div class="copy-dot cd-dep"></div>Quem já depositou</div>
+<div class="copy-text" id="c3c">🐺 Você já tá dentro. Aproveita.
+
+Hoje tem alavancagem sem risco disponível — você pode aumentar sua banca operacional sem comprometer o capital que já tem.
+
+💵 Deposita mais R$200 → opera com R$400 a mais
+💵 Deposita mais R$500 → opera com R$1.000 a mais
+
+Quer participar? Manda mensagem pro suporte:
+[LINK SUPORTE]</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c3c',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c3c',this)">Copiar</button>
+</div>
+</div>
+</div>
+
+  </div>
+
+  <!-- DIA 4 -->
+
+  <div class="day-card">
+    <input type="checkbox" id="d4">
+    <label class="day-header" for="d4">
+      <div class="day-date">14/05</div>
+      <div class="day-title">🌍 Operação em Forex</div>
+      <div class="day-weekday">Quinta</div>
+      <div class="chevron">▼</div>
+    </label>
+    <div class="day-body">
+      <div class="copy-block">
+        <div class="copy-label lbl-all"><div class="copy-dot cd-all"></div>Toda a base</div>
+        <div class="copy-text" id="c4a">🌍 FOREX HOJE COM O ÍTALO — AO VIVO.
+
+O mercado de câmbio tá em movimento e o Ítalo vai operar ao vivo mostrando cada entrada, cada saída.
+
+📊 Você não precisa de experiência. Você só precisa tá dentro.
+
+Quem ainda não depositou, esse é o dia. Você acompanha a operação em tempo real e entende na prática como o dinheiro se move.
+
+👉 Entra agora na Puma:
+[LINK CADASTRO]
+
+Suporte: [LINK SUPORTE]</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c4a',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c4a',this)">Copiar</button>
+</div>
+</div>
+<div class="copy-block">
+<div class="copy-label lbl-ftd"><div class="copy-dot cd-ftd"></div>Quem fez FTD mas não depositou</div>
+<div class="copy-text" id="c4b">Hoje tem operação ao vivo em Forex com o Ítalo.
+
+Você vai conseguir acompanhar, mas não vai conseguir operar junto — porque ainda não depositou.
+
+É uma diferença grande. Quem opera junto aprende na prática. Quem só assiste, fica na teoria.
+
+Ainda dá tempo de entrar antes da live:
+[LINK SUPORTE]</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c4b',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c4b',this)">Copiar</button>
+</div>
+</div>
+<div class="copy-block">
+<div class="copy-label lbl-dep"><div class="copy-dot cd-dep"></div>Quem já depositou</div>
+<div class="copy-text" id="c4c">🔔 Lembrete pra quem tá operando:
+
+Hoje tem live de Forex com o Ítalo. Ele vai mostrar as entradas ao vivo.
+
+Prepara sua plataforma e fica ligado no horário. 📲
+
+[LINK DO GRUPO]</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c4c',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c4c',this)">Copiar</button>
+</div>
+</div>
+</div>
+
+  </div>
+
+  <!-- DIA 5 -->
+
+  <div class="day-card">
+    <input type="checkbox" id="d5">
+    <label class="day-header" for="d5">
+      <div class="day-date">15/05</div>
+      <div class="day-title">🤖 Copy Trade Nexor</div>
+      <div class="day-weekday">Sexta</div>
+      <div class="chevron">▼</div>
+    </label>
+    <div class="day-body">
+      <div class="copy-block">
+        <div class="copy-label lbl-all"><div class="copy-dot cd-all"></div>Toda a base</div>
+        <div class="copy-text" id="c5a">🤖 COPY TRADE COM NEXOR — VOCÊ COPIA, ELE OPERA.
+
+Sabe quando você não precisa tomar nenhuma decisão e ainda assim lucra?
+
+É isso. O Nexor opera. Você copia. O resultado entra na sua conta.
+
+✅ Sem precisar entender o mercado
+✅ Sem ficar na frente do gráfico
+✅ Sem risco de decisão errada
+
+Proporcional ao seu saldo:
+💵 Tem R$100 → lucra nos R$100
+💵 Tem R$500 → lucra nos R$500
+💵 Tem R$1.000 → lucra nos R$1.000
+
+Hoje o Ítalo libera o copy trade via Nexor pra quem tiver dentro da Puma.
+
+👉 Garante sua vaga:
+[LINK SUPORTE]</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c5a',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c5a',this)">Copiar</button>
+</div>
+</div>
+<div class="copy-block">
+<div class="copy-label lbl-ftd"><div class="copy-dot cd-ftd"></div>Quem fez FTD mas não depositou</div>
+<div class="copy-text" id="c5b">Imagina lucrar sem precisar operar.
+
+É isso que o copy trade faz. O Nexor opera, você copia os resultados na sua conta.
+
+Hoje o Ítalo libera isso aqui na Puma. Pra participar, você precisa ter saldo ativo.
+
+Faz o depósito e entra:
+[LINK SUPORTE]</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c5b',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c5b',this)">Copiar</button>
+</div>
+</div>
+<div class="copy-block">
+<div class="copy-label lbl-dep"><div class="copy-dot cd-dep"></div>Quem já depositou</div>
+<div class="copy-text" id="c5c">🤖 Copy Trade Nexor disponível hoje pra você.
+
+Você já tem saldo na conta — agora é só ativar o copy e deixar o Nexor trabalhar por você.
+
+Manda mensagem no suporte pra configurar:
+[LINK SUPORTE]</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c5c',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c5c',this)">Copiar</button>
+</div>
+</div>
+</div>
+
+  </div>
+
+  <!-- DIA 6 -->
+
+  <div class="day-card">
+    <input type="checkbox" id="d6">
+    <label class="day-header" for="d6">
+      <div class="day-date">16/05</div>
+      <div class="day-title">🤖 Copy Trade</div>
+      <div class="day-weekday">Sábado</div>
+      <div class="chevron">▼</div>
+    </label>
+    <div class="day-body">
+      <div class="copy-block">
+        <div class="copy-label lbl-all"><div class="copy-dot cd-all"></div>Toda a base</div>
+        <div class="copy-text" id="c6a">📲 ÚLTIMO DIA DE COPY TRADE DA SEMANA.
+
+A semana foi intensa. Indicador. Alavancagem. Forex ao vivo. Copy trade com Nexor.
+
+E pra fechar com chave de ouro — copy trade disponível hoje também.
+
+Quem ainda não entrou essa semana, essa é a última chance de acompanhar os resultados junto com a galera da Puma.
+
+👉 Entra agora:
+[LINK CADASTRO]
+
+Suporte: [LINK SUPORTE]</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c6a',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c6a',this)">Copiar</button>
+</div>
+</div>
+<div class="copy-block">
+<div class="copy-label lbl-ftd"><div class="copy-dot cd-ftd"></div>Quem fez FTD mas não depositou</div>
+<div class="copy-text" id="c6b">Essa semana passou rápido, né?
+
+Indicador. Alavancagem sem risco. Forex ao vivo. Copy trade Nexor.
+
+Você ficou de fora de tudo isso por não ter ativado a conta ainda.
+
+Semana que vem vem mais. Mas começa agora — não na semana que vem.
+
+[LINK SUPORTE]</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c6b',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c6b',this)">Copiar</button>
+</div>
+</div>
+<div class="copy-block">
+<div class="copy-label lbl-dep"><div class="copy-dot cd-dep"></div>Quem já depositou</div>
+<div class="copy-text" id="c6c">Fechando a semana forte. 🐺
+
+Copy trade disponível hoje. Aproveita o sábado pra deixar o sistema trabalhar por você enquanto descansa.
+
+Qualquer dúvida, suporte tá aqui:
+[LINK SUPORTE]</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c6c',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c6c',this)">Copiar</button>
+</div>
+</div>
+</div>
+
+  </div>
+
+</div>
+
+<script>
+function editar(id, btn) {
+  var el = document.getElementById(id);
+  if (el.contentEditable === 'true') {
+    el.contentEditable = 'false';
+    btn.textContent = '✏️ Editar';
+    btn.classList.remove('on');
+  } else {
+    el.contentEditable = 'true';
+    el.focus();
+    btn.textContent = '✅ Salvar';
+    btn.classList.add('on');
+  }
+}
+function copiar(id, btn) {
+  var el = document.getElementById(id);
+  var text = el.innerText;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function() {
+      btn.textContent = '✓ Copiado';
+      btn.classList.add('ok');
+      setTimeout(function(){ btn.textContent = 'Copiar'; btn.classList.remove('ok'); }, 2000);
+    });
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = '✓ Copiado';
+    btn.classList.add('ok');
+    setTimeout(function(){ btn.textContent = 'Copiar'; btn.classList.remove('ok'); }, 2000);
+  }
+}
+</script>
+
+</body>
+</html>
