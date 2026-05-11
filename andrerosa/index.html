@@ -1,1 +1,453 @@
+<!DOCTYPE html>
 
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planejamento André Rosa — 12 a 16/05</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0a0a0f; --surface:#13131a; --border:#1e1e2e; --accent:#f97316; --accent2:#ff6b35; --text:#e8e8f0; --muted:#6b6b80; --green:#2ecc71; --edit:#3b82f6; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; font-weight:300; line-height:1.6; min-height:100vh; }
+  header { padding:40px 32px 28px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:12px; }
+  .header-left h1 { font-family:'Syne',sans-serif; font-size:clamp(1.4rem,4vw,2.2rem); font-weight:800; color:#fff; }
+  .header-left h1 span { color:var(--accent); }
+  .header-left p { color:var(--muted); font-size:0.85rem; margin-top:4px; text-transform:uppercase; letter-spacing:0.5px; }
+  .badge { background:var(--accent); color:#000; font-family:'Syne',sans-serif; font-weight:700; font-size:0.75rem; padding:6px 14px; border-radius:2px; text-transform:uppercase; }
+  .container { max-width:860px; margin:0 auto; padding:32px 20px 80px; }
+  .legend { display:flex; gap:16px; margin-bottom:28px; flex-wrap:wrap; }
+  .legend-item { display:flex; align-items:center; gap:8px; font-size:0.78rem; color:var(--muted); }
+  .dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+  .dot-all{background:var(--text);} .dot-ftd{background:var(--accent2);} .dot-dep{background:var(--green);}
+  .day-card { background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--accent); border-radius:4px; margin-bottom:16px; }
+  .day-card input[type=checkbox] { display:none; }
+  .day-header { display:flex; align-items:center; gap:14px; padding:16px 20px; cursor:pointer; user-select:none; border-bottom:1px solid transparent; }
+  .day-card input:checked ~ .day-header { border-bottom-color:var(--border); }
+  .day-date { font-family:'Syne',sans-serif; font-size:0.75rem; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:1px; min-width:48px; }
+  .day-title { font-weight:500; font-size:0.92rem; color:#fff; flex:1; }
+  .day-weekday { font-size:0.72rem; color:var(--muted); text-transform:uppercase; }
+  .chevron { color:var(--muted); font-size:0.75rem; transition:transform 0.2s; flex-shrink:0; }
+  .day-card input:checked ~ .day-header .chevron { transform:rotate(180deg); }
+  .day-body { display:none; padding:16px; }
+  .day-card input:checked ~ .day-body { display:block; }
+  .copy-block { margin-bottom:14px; border-radius:3px; overflow:hidden; }
+  .copy-block:last-child { margin-bottom:0; }
+  .copy-label { display:flex; align-items:center; gap:8px; padding:7px 12px; font-size:0.7rem; font-weight:500; text-transform:uppercase; letter-spacing:1px; }
+  .lbl-all{background:rgba(232,232,240,0.08);color:var(--text);}
+  .lbl-ftd{background:rgba(255,107,53,0.12);color:var(--accent2);}
+  .lbl-dep{background:rgba(46,204,113,0.10);color:var(--green);}
+  .copy-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+  .cd-all{background:var(--text);} .cd-ftd{background:var(--accent2);} .cd-dep{background:var(--green);}
+  .copy-text { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-top:none; padding:12px 14px; font-size:0.85rem; line-height:1.85; color:var(--text); white-space:pre-wrap; word-break:break-word; }
+  .copy-text[contenteditable="true"] { outline:none; border-color:var(--edit); background:rgba(59,130,246,0.06); }
+  .btn-row { display:flex; gap:6px; padding:8px 12px; border:1px solid var(--border); border-top:none; background:rgba(0,0,0,0.2); }
+  .btn { font-family:'DM Sans',sans-serif; font-size:0.7rem; font-weight:500; padding:5px 14px; border-radius:2px; border:none; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; transition:all 0.15s; }
+  .btn-edit { background:rgba(59,130,246,0.15); color:var(--edit); }
+  .btn-edit:hover, .btn-edit.on { background:var(--edit); color:#fff; }
+  .btn-copy { background:rgba(255,255,255,0.08); color:var(--muted); }
+  .btn-copy:hover { background:var(--accent); color:#000; }
+  .btn-copy.ok { background:var(--green); color:#000; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <h1>🔥 André Rosa — <span>Semana 12–16/05</span></h1>
+    <p>Hezilex · Ativações + copies de disparo</p>
+  </div>
+  <div class="badge">Alfa Business</div>
+</header>
+
+<div class="container">
+  <div class="legend">
+    <div class="legend-item"><div class="dot dot-all"></div>Toda a base</div>
+    <div class="legend-item"><div class="dot dot-ftd"></div>Quem fez FTD</div>
+    <div class="legend-item"><div class="dot dot-dep"></div>Quem já depositou</div>
+  </div>
+
+  <!-- DIA 1 -->
+
+  <div class="day-card">
+    <input type="checkbox" id="d1">
+    <label class="day-header" for="d1">
+      <div class="day-date">12/05</div>
+      <div class="day-title">₿ Operação em Cripto</div>
+      <div class="day-weekday">Terça</div>
+      <div class="chevron">▼</div>
+    </label>
+    <div class="day-body">
+      <div class="copy-block">
+        <div class="copy-label lbl-all"><div class="copy-dot cd-all"></div>Toda a base</div>
+        <div class="copy-text" id="c1a">₿ Hoje eu vou operar cripto ao vivo aqui na Hezilex.
+
+Bitcoin. Ethereum. Altcoins. O mercado tá em movimento e eu vou mostrar na tela exatamente como eu entro, como eu saio e por quê.
+
+Sem enrolação. Sem teoria. Operação real, resultado real, ao vivo.
+
+Semanas passadas tive retornos de 40%, 60%, 80% em operações pontuais de cripto. Hoje eu vou mostrar como.
+
+Mas pra operar junto comigo você precisa ter saldo ativo na Hezilex.
+
+👉 Entra agora antes da live começar:
+[LINK CADASTRO]
+
+⏰ Não deixa pra depois. — André Rosa</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c1a',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c1a',this)">Copiar</button>
+</div>
+</div>
+<div class="copy-block">
+<div class="copy-label lbl-ftd"><div class="copy-dot cd-ftd"></div>Quem fez FTD mas não depositou</div>
+<div class="copy-text" id="c1b">Você criou sua conta aqui. Isso foi o primeiro passo.
+
+Hoje eu opero cripto ao vivo — e quem tiver com saldo ativo opera junto comigo e pega o resultado na conta. Quem não tiver só assiste.
+
+A diferença é um depósito. R$100 já te coloca dentro.
+
+Ativa agora antes da live:
+[LINK SUPORTE]
+
+Te vejo lá. — André Rosa</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c1b',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c1b',this)">Copiar</button>
+</div>
+</div>
+<div class="copy-block">
+<div class="copy-label lbl-dep"><div class="copy-dot cd-dep"></div>Quem já depositou</div>
+<div class="copy-text" id="c1c">🔥 Hoje eu opero cripto ao vivo.
+
+Prepara sua plataforma. Vou mostrar cada entrada em tempo real — você opera junto comigo.
+
+Fica ligado no grupo no horário:
+[LINK DO GRUPO]
+
+— André Rosa</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c1c',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c1c',this)">Copiar</button>
+</div>
+</div>
+</div>
+
+  </div>
+
+  <!-- DIA 2 -->
+
+  <div class="day-card">
+    <input type="checkbox" id="d2">
+    <label class="day-header" for="d2">
+      <div class="day-date">13/05</div>
+      <div class="day-title">📰 Notícia do Dia + Forex com CTA</div>
+      <div class="day-weekday">Quarta</div>
+      <div class="chevron">▼</div>
+    </label>
+    <div class="day-body">
+      <div class="copy-block">
+        <div class="copy-label lbl-all"><div class="copy-dot cd-all"></div>Toda a base</div>
+        <div class="copy-text" id="c2a">📰 Eu não opero no escuro. Eu uso informação.
+
+Hoje eu vou pegar a notícia mais relevante do dia, mostrar como ela impacta o forex e operar AO VIVO na Hezilex com base nisso.
+
+Você vai ver:
+📌 A notícia que eu escolhi
+📌 Como eu li o movimento do mercado
+📌 A entrada exata que eu fiz
+📌 O resultado saindo na tela
+
+É assim que eu opero. Não é chute. É leitura de mercado real.
+
+👉 Entra na Hezilex agora e opera junto comigo:
+[LINK CADASTRO]
+
+— André Rosa</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c2a',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c2a',this)">Copiar</button>
+</div>
+</div>
+<div class="copy-block">
+<div class="copy-label lbl-ftd"><div class="copy-dot cd-ftd"></div>Quem fez FTD mas não depositou</div>
+<div class="copy-text" id="c2b">Ontem você perdeu a operação de cripto ao vivo comigo.
+
+Hoje eu faço forex ao vivo com leitura de notícia — o tipo de operação que pode gerar 20%, 30% em poucas horas dependendo do movimento.
+
+Você vai ficar de fora de novo?
+
+Deposita agora e entra antes da live:
+[LINK SUPORTE]
+
+— André Rosa</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c2b',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c2b',this)">Copiar</button>
+</div>
+</div>
+<div class="copy-block">
+<div class="copy-label lbl-dep"><div class="copy-dot cd-dep"></div>Quem já depositou</div>
+<div class="copy-text" id="c2c">📰 Hoje eu faço forex ao vivo usando a notícia do dia como gatilho.
+
+Esse tipo de operação costuma ser rápida e precisa. Prepara sua plataforma e fica ligado no grupo:
+[LINK DO GRUPO]
+
+— André Rosa</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c2c',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c2c',this)">Copiar</button>
+</div>
+</div>
+</div>
+
+  </div>
+
+  <!-- DIA 3 -->
+
+  <div class="day-card">
+    <input type="checkbox" id="d3">
+    <label class="day-header" for="d3">
+      <div class="day-date">14/05</div>
+      <div class="day-title">🏆 Torneio de Indicação de Leads</div>
+      <div class="day-weekday">Quinta</div>
+      <div class="chevron">▼</div>
+    </label>
+    <div class="day-body">
+      <div class="copy-block">
+        <div class="copy-label lbl-all"><div class="copy-dot cd-all"></div>Toda a base</div>
+        <div class="copy-text" id="c3a">🏆 Eu vou premiar quem me ajudar a crescer.
+
+Lancei o torneio de indicação aqui na Hezilex — e o prêmio vem do meu bolso.
+
+Como funciona:
+1️⃣ Você compartilha seu link de indicação
+2️⃣ Cada amigo que criar conta = 1 ponto pra você
+3️⃣ Quem tiver mais pontos no fim leva o prêmio
+
+🎁 O que eu vou dar: [PRÊMIO]
+
+Simples assim. Você me ajuda a crescer, eu te recompenso.
+
+👉 Pega seu link de indicação agora:
+[LINK SUPORTE]
+
+— André Rosa</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c3a',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c3a',this)">Copiar</button>
+</div>
+</div>
+<div class="copy-block">
+<div class="copy-label lbl-ftd"><div class="copy-dot cd-ftd"></div>Quem fez FTD mas não depositou</div>
+<div class="copy-text" id="c3b">Lancei um torneio de indicação hoje — e eu mesmo vou premiar quem ganhar.
+
+Mas pra participar e pegar seu link de indicação, você precisa ter conta ativa aqui na Hezilex.
+
+Ativa agora e já entra no torneio:
+[LINK SUPORTE]
+
+— André Rosa</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c3b',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c3b',this)">Copiar</button>
+</div>
+</div>
+<div class="copy-block">
+<div class="copy-label lbl-dep"><div class="copy-dot cd-dep"></div>Quem já depositou</div>
+<div class="copy-text" id="c3c">🏆 Você já tá dentro — agora é hora de competir.
+
+Pega seu link de indicação, compartilha com quem você conhece e acumula pontos. Eu mesmo vou premiar o vencedor.
+
+Fala com o suporte pra pegar seu link:
+[LINK SUPORTE]
+
+— André Rosa</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c3c',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c3c',this)">Copiar</button>
+</div>
+</div>
+</div>
+
+  </div>
+
+  <!-- DIA 4 -->
+
+  <div class="day-card">
+    <input type="checkbox" id="d4">
+    <label class="day-header" for="d4">
+      <div class="day-date">15/05</div>
+      <div class="day-title">📚 Análise Educacional</div>
+      <div class="day-weekday">Sexta</div>
+      <div class="chevron">▼</div>
+    </label>
+    <div class="day-body">
+      <div class="copy-block">
+        <div class="copy-label lbl-all"><div class="copy-dot cd-all"></div>Toda a base</div>
+        <div class="copy-text" id="c4a">📚 Hoje eu vou te mostrar por que 90% dos traders perdem dinheiro.
+
+Não é falta de estratégia. Não é falta de capital. É erro de execução — e eu vivi isso na pele antes de virar consistente.
+
+Hoje eu faço uma análise educacional ao vivo mostrando os erros mais comuns que fazem traders quebrarem a banca e como eu aprendi a evitar cada um deles.
+
+Isso vale mais do que qualquer curso que você já comprou. E é de graça pra quem tá aqui dentro.
+
+👉 Entra na Hezilex e assiste:
+[LINK CADASTRO]
+
+Compartilha com quem você sabe que tá perdendo dinheiro no mercado. 🔥
+
+— André Rosa</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c4a',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c4a',this)">Copiar</button>
+</div>
+</div>
+<div class="copy-block">
+<div class="copy-label lbl-ftd"><div class="copy-dot cd-ftd"></div>Quem fez FTD mas não depositou</div>
+<div class="copy-text" id="c4b">Hoje eu faço análise educacional ao vivo — os erros que destroem traders e como eu aprendi a evitar.
+
+Você tem conta mas ainda não ativou. Quem tiver dentro assiste com acesso completo e pode me perguntar ao vivo.
+
+Ativa agora antes de começar:
+[LINK SUPORTE]
+
+— André Rosa</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c4b',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c4b',this)">Copiar</button>
+</div>
+</div>
+<div class="copy-block">
+<div class="copy-label lbl-dep"><div class="copy-dot cd-dep"></div>Quem já depositou</div>
+<div class="copy-text" id="c4c">📚 Hoje eu faço análise educacional ao vivo.
+
+Vou mostrar os erros mais comuns de quem perde dinheiro no mercado — mesmo quem já opera vai se ver em algum ponto.
+
+Fica ligado no grupo no horário:
+[LINK DO GRUPO]
+
+— André Rosa</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c4c',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c4c',this)">Copiar</button>
+</div>
+</div>
+</div>
+
+  </div>
+
+  <!-- DIA 5 -->
+
+  <div class="day-card">
+    <input type="checkbox" id="d5">
+    <label class="day-header" for="d5">
+      <div class="day-date">16/05</div>
+      <div class="day-title">🎟️ Cupom Exclusivo</div>
+      <div class="day-weekday">Sábado</div>
+      <div class="chevron">▼</div>
+    </label>
+    <div class="day-body">
+      <div class="copy-block">
+        <div class="copy-label lbl-all"><div class="copy-dot cd-all"></div>Toda a base</div>
+        <div class="copy-text" id="c5a">🎟️ Eu liberei um cupom exclusivo — só hoje.
+
+Essa semana aqui dentro teve:
+✅ Eu operando cripto ao vivo
+✅ Forex com leitura de notícia ao vivo
+✅ Torneio de indicação com prêmio
+✅ Análise educacional ao vivo
+
+Tudo isso aconteceu. E hoje é o último dia da semana pra entrar com condição especial.
+
+Na segunda o cupom fecha e o valor volta ao normal.
+
+Se você tava esperando o momento certo — esse é ele.
+
+👉 Usa o cupom e entra agora:
+[LINK CADASTRO]
+
+— André Rosa</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c5a',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c5a',this)">Copiar</button>
+</div>
+</div>
+<div class="copy-block">
+<div class="copy-label lbl-ftd"><div class="copy-dot cd-ftd"></div>Quem fez FTD mas não depositou</div>
+<div class="copy-text" id="c5b">Cripto ao vivo. Forex com notícia. Torneio. Análise educacional.
+
+Você ficou de fora de tudo isso essa semana.
+
+Hoje eu liberei um cupom exclusivo — última chance de entrar com condição especial antes da semana fechar.
+
+Na segunda some. Decide agora:
+[LINK SUPORTE]
+
+— André Rosa</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c5b',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c5b',this)">Copiar</button>
+</div>
+</div>
+<div class="copy-block">
+<div class="copy-label lbl-dep"><div class="copy-dot cd-dep"></div>Quem já depositou</div>
+<div class="copy-text" id="c5c">Semana encerrada. Obrigado por estar aqui. 🔥
+
+Hoje eu liberei um cupom exclusivo — se você conhece alguém que tá querendo entrar na Hezilex, esse é o momento certo de indicar.
+
+Qualquer dúvida, suporte aqui:
+[LINK SUPORTE]
+
+— André Rosa</div>
+<div class="btn-row">
+<button class="btn btn-edit" onclick="editar('c5c',this)">✏️ Editar</button>
+<button class="btn btn-copy" onclick="copiar('c5c',this)">Copiar</button>
+</div>
+</div>
+</div>
+
+  </div>
+
+</div>
+
+<script>
+function editar(id, btn) {
+  var el = document.getElementById(id);
+  if (el.contentEditable === 'true') {
+    el.contentEditable = 'false';
+    btn.textContent = '✏️ Editar';
+    btn.classList.remove('on');
+  } else {
+    el.contentEditable = 'true';
+    el.focus();
+    btn.textContent = '✅ Salvar';
+    btn.classList.add('on');
+  }
+}
+function copiar(id, btn) {
+  var el = document.getElementById(id);
+  var text = el.innerText;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function() {
+      btn.textContent = '✓ Copiado';
+      btn.classList.add('ok');
+      setTimeout(function(){ btn.textContent = 'Copiar'; btn.classList.remove('ok'); }, 2000);
+    });
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = '✓ Copiado';
+    btn.classList.add('ok');
+    setTimeout(function(){ btn.textContent = 'Copiar'; btn.classList.remove('ok'); }, 2000);
+  }
+}
+</script>
+
+</body>
+</html>
